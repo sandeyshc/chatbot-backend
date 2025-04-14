@@ -10,7 +10,8 @@ import os
 import traceback
 import requests
 from bs4 import BeautifulSoup
-from netlify import handler
+# from netlify import handler
+from mangum import Mangum
 
 qa_pipeline = pipeline("question-answering", model="bert-large-uncased-whole-word-masking-finetuned-squad")
 sbert_model = SentenceTransformer('all-MiniLM-L6-v2')
@@ -135,4 +136,6 @@ async def ask_question(request: dict):
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 
-handler = handler(app)
+# handler = handler(app)
+
+handler = Mangum(app)
