@@ -139,3 +139,6 @@ async def ask_question(request: dict):
 # handler = handler(app)
 
 handler = Mangum(app)
+
+def handler(event, context):
+    return handler(event, context)
